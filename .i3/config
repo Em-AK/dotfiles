@@ -30,6 +30,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start browser
 bindsym $mod+b exec --no-startup-id chromium
 
+# start arandr
+bindsym $mod+p exec --no-startup-id arandr
+
 # start gmail in midori
 bindsym $mod+g exec --no-startup-id midori
 
