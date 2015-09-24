@@ -25,6 +25,7 @@ alias tach="tmux attach -t"
 alias bbye="sudo poweroff"
 alias glog="glo --graph"
 alias phpush="rm -rf ~/public_html/* && rm -rf ~/public_html/.* && cp -r . ~/public_html/"
+alias gds="git diff --staged"
 
 # Simplon Village
 alias sv21="ssh root@192.168.0.21"
@@ -93,7 +94,12 @@ else
   export EDITOR='vim'
 fi
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:/usr/bin/elixir"
+

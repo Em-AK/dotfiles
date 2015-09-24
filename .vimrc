@@ -19,6 +19,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-rails.git'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
 " Themes
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'tomasr/molokai'
@@ -29,6 +30,7 @@ Bundle 'slim-template/vim-slim'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " scripts from http://vim-scripts.org/vim/scripts.html
 Plugin 'vimclojure'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 " scripts not on GitHub
@@ -70,5 +72,6 @@ set autoindent
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set colorcolumn=80
 
 let g:vim_markdown_folding_disabled=1
