@@ -1,6 +1,6 @@
 URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*.shading: 3
+URxvt*.shading: 18
 
 ! Compile xft: Attempt to find a visual with the given bit depth; option -depth.
 URxvt*depth: 32
@@ -8,11 +8,17 @@ URxvt*depth: 32
 ! Compile xft: Turn on/off double-buffering for xft (default enabled).  On some card/driver
 ! URxvt*buffered: boolean
 
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 ! Create the window with the specified X window geometry [default 80x24]; option -geometry.
 ! URxvt*geometry: geom
 
 ! Use the specified colour as the windows background colour [default White]; option -bg.
-! URxvt*background: [88]#000000
+URxvt*background: [88]#000000
 
 ! Use the specified colour as the windows foreground colour [default Black]; option -fg.
 URxvt*foreground: #EBEBEB
@@ -74,9 +80,14 @@ URxvt*foreground: #EBEBEB
 URxvt*font: xft:inconsolata:size=13
 URxvt*letterSpace: -1
 
-URxvt.perl-ext-common:  default,font-size,clipboard
+! load external extensions
+URxvt.perl-ext-common:  default,font-size,url-select,keyboard-select, clipboard
+
 URxvt.keysym.C-Up:     perl:font-size:increase
 URxvt.keysym.C-Down:   perl:font-size:decrease
+
+URxvt.url-select.button: 2
+URxvt.url-select.underline: true
 
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -109,7 +120,7 @@ URxvt.iso14755_52: false
 ! URxvt*visualBell: boolean
 
 ! True: start as a login shell by prepending a - to argv[0] of the shell; option -ls.
-! URxvt*loginShell: true
+URxvt*loginShell: true
 
 ! True: inhibit writing record into the system log file utmp; option -ut. False: write
 ! URxvt*utmpInhibit: boolean
@@ -278,3 +289,44 @@ URxvt*cursorBlink: true
 ! Turn on/off ISO 14755 5.2 mode (default enabled).
 ! URxvt*iso14755_52: boolean
 
+! Base16 Default
+! Scheme: Chris Kempson (http://chriskempson.com)
+
+#define base00 #181818
+#define base01 #282828
+#define base02 #383838
+#define base03 #585858
+#define base04 #b8b8b8
+#define base05 #d8d8d8
+#define base06 #e8e8e8
+#define base07 #f8f8f8
+#define base08 #ab4642
+#define base09 #dc9656
+#define base0A #f7ca88
+#define base0B #a1b56c
+#define base0C #86c1b9
+#define base0D #7cafc2
+#define base0E #ba8baf
+#define base0F #a16946
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base09
+*.color10:      base01
+*.color11:      base02
+*.color12:      base04
+*.color13:      base06
+*.color14:      base0F
+*.color15:      base07
