@@ -39,6 +39,9 @@ bindsym $mod+g exec --no-startup-id firefox
 # start file browser 
 bindsym $mod+m exec --no-startup-id pcmanfm
 
+# take a screenshot
+bindsym $mod+Shift+s exec shutter -s
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
