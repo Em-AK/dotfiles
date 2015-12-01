@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh installation.
+
 ZSH=/usr/share/oh-my-zsh/
 
 # Set name of the theme to load.
@@ -94,6 +94,10 @@ alias yupdate="yaourt -Syua"
 alias tnew="tmux new -s"
 alias tach="tmux attach -t"
 alias gds="git diff --staged"
+alias winteriscoming="sudo swapon -a && systemctl hibernate"
+alias hi="sudo swapoff -a && echo 'Hi Emilien, You should open your heart and Open Acess'"
+alias trustme="ssh-add ~/.ssh/id_rsa"
+alias fitscreen="source ~/.fehbg"
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

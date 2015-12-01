@@ -10,6 +10,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'spf13/vim-autoclose'
 Plug 'janko-m/vim-test'
 Plug 'elixir-lang/vim-elixir'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'evidens/vim-twig'
 call plug#end()
 
 set number
