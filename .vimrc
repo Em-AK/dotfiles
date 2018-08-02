@@ -2,16 +2,44 @@
 
 " External plugins
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/seoul256.vim' "Color scheme
-Plug 'itchyny/lightline.vim' "Vim status line
-Plug 'ctrlpvim/ctrlp.vim' "Fuzzy finder
-Plug 'craigemery/vim-autotag' "Re-run ctags on buffer write
-Plug 'junegunn/goyo.vim' "Distraction free writing
-Plug 'junegunn/limelight.vim' "Huperfocus writing in vim
-Plug 'tpope/vim-fugitive' "Git wrapper
-Plug 'airblade/vim-gitgutter' "Git diff line by line
-Plug 'edkolev/tmuxline.vim' "Tmux integration with vim colors
-Plug 'vim-syntastic/syntastic' "Syntax checking
+                                        "## Color schemes
+Plug 'junegunn/seoul256.vim'
+Plug 'chriskempson/base16-vim'
+
+                                        "## Basic utils
+Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy finder
+Plug 'gabesoft/vim-ags'                 " Search the codebase
+Plug 'tpope/vim-fugitive'               " Git wrapper
+Plug 'airblade/vim-gitgutter'           " Git diff line by line
+Plug 'godlygeek/tabular'                " Text alignment tool
+Plug 'vim-syntastic/syntastic'          " Syntax checking
+Plug 'craigemery/vim-autotag'           " Re-run ctags on buffer write
+
+                                        "## Tests
+Plug 'janko-m/vim-test'                 " Run your tests without leaving vim
+Plug 'benmills/vimux'                   " Display strategy for vim-test
+Plug 'tpope/vim-dispatch'               " Display strategy for vim-test
+
+                                        "## Frame
+Plug 'itchyny/lightline.vim'            " Vim status line
+Plug 'edkolev/tmuxline.vim'             " Tmux integration with vim colors
+Plug 'nathanaelkane/vim-indent-guides'  " display indentation guides
+
+                                        "## Prose writing
+Plug 'junegunn/goyo.vim'                " Distraction free writing
+Plug 'junegunn/limelight.vim'           " Huperfocus writing in vim
+
+                                        "## Language syntax support
+Plug 'editorconfig/editorconfig-vim'
+Plug 'lumiliet/vim-twig'                " Twig support
+Plug 'slim-template/vim-slim'           " Slim templates support
+Plug 'urbit/hoon.vim'                   " Hoon syntax support
+Plug 'slim-template/vim-slim'           " slim templating syntax
+Plug 'kchmck/vim-coffee-script'         " coffeescript support
+
+                                        "## Clojure toolchain
+Plug 'junegunn/rainbow_parentheses.vim' " colorfull parenthesis in clojure
+Plug 'tpope/vim-fireplace'              " Clojure REPL support
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -29,6 +57,29 @@ set relativenumber "Numbering lines relative to the current line
 set t_Co=256 "Sets Vim to use 256 colors
 set updatetime=300
 
+
+" Color scheme
+"
+" Seoul
+"colo seoul256
+"set background=dark
+"
+"colo seoul256-light
+"set background=light
+"
+" Base16
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-bespin
+
+
+"vim indent guides config
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+
+"Manually set indent guide colors
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=18
 
 " Lightline configuration
 let g:lightline = {
@@ -102,13 +153,8 @@ function! LLMode()
 endfunction
 
 
-" Unified color scheme (default: dark)
-colo seoul256
-" Light color scheme
-colo seoul256-light
-" Switch
-set background=dark
-"set background=light
+"Vertical color column at 80 char
+set colorcolumn=80
 
 
 " Goyo hyper focus mode with LimeLight
@@ -135,7 +181,9 @@ set smartindent "Remembers previous indent when creating new lines
 "these two. Expand for spaces, noexpand for tabs:"
 "set noexpandtab
 set expandtab
- 
+set list
+set listchars=trail:·,tab:→→,nbsp:⎵
+
 
 " Search settings
 set hlsearch "Highlights search terms
@@ -151,4 +199,43 @@ nnoremap Q <Nop>
 
 "Turn on plugin & indentation support for specific filetypes
 filetype plugin indent on
+"Turn on omni-completion
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+
+" EditorConfig config
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+
+" Config vim-test
+if !empty(glob("docker-compose.yml"))
+  let test#ruby#rspec#executable = 'docker exec -it spring spring rspec'
+end
+
+let g:test#runner_commands = ['RSpec']
+let test#strategy = "vimux"
+
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> tn :TestNearest<CR> " t n
+nmap <silent> tf :TestFile<CR>    " t f
+nmap <silent> ts :TestSuite<CR>   " t s
+nmap <silent> tl :TestLast<CR>    " t l
+nmap <silent> tg :TestVisit<CR>   " t g
+nmap <silent> ta :RSpec spec/acceptance --format RspecApiDocumentation::ApiFormatter<CR> " t a
+
+
+
+" Config RainbowParentheses
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
+" List of colors that you do not want. ANSI code or #RRGGBB
+let g:rainbow#blacklist = [233, 234]
+
+" Activate RainbowParentheses based on file type
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
 

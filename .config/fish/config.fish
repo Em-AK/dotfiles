@@ -29,4 +29,23 @@ alias gst='git status'
 alias tnew="tmux new -s"
 alias tach="tmux attach -t"
 
+# Base16 Shell
+if status --is-interactive
+  set BASE16_SHELL "$HOME/.config/base16-shell/"
+  source "$BASE16_SHELL/profile_helper.fish"
+end
+
 set -x EDITOR vim
+set -x GOROOT /usr/local/go
+set -x GOPATH $HOME/code/gocode
+set -x ANDROID_HOME $HOME/Android/Sdk
+
+set PATH $HOME/.rbenv/bin $PATH
+set PATH $HOME/.rbenv/shims $PATH
+set PATH $GOPATH/bin $GOROOT/bin $PATH
+set PATH $PATH $ANDROID_HOME/tools
+set PATH $PATH $ANDROID_HOME/tools/bin
+set PATH $PATH $ANDROID_HOME/platform-tools
+set PATH $PATH /opt/gradle/gradle-4.9/bin
+
+rbenv rehash >/dev/null ^&1

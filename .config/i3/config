@@ -84,6 +84,7 @@ bindsym $mod+Shift+f exec gksu pcmanfm
 bindsym $mod+g exec gmrun
 bindsym $mod+F9 exec synclient TouchPadOff=1
 bindsym $mod+F10 exec synclient TouchPadOff=0
+bindsym $mod+p exec arandr
 
 #scratchpad
 bindsym $mod+Shift+minus move scratchpad
