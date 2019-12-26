@@ -77,7 +77,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+Return exec sakura
 
 # Apps and settings
-bindsym $mod+b exec iridium-browser
+bindsym $mod+b exec brave-browser
 bindsym $mod+Shift+s exec i3lock -c 111111
 bindsym $mod+m exec pcmanfm 
 bindsym $mod+Shift+f exec gksu pcmanfm 

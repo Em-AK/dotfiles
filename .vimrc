@@ -2,44 +2,51 @@
 
 " External plugins
 call plug#begin('~/.vim/plugged')
-                                        "## Color schemes
+                                             " ## Color schemes
 Plug 'junegunn/seoul256.vim'
 Plug 'chriskempson/base16-vim'
 
-                                        "## Basic utils
-Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy finder
-Plug 'gabesoft/vim-ags'                 " Search the codebase
-Plug 'tpope/vim-fugitive'               " Git wrapper
-Plug 'airblade/vim-gitgutter'           " Git diff line by line
-Plug 'godlygeek/tabular'                " Text alignment tool
-Plug 'vim-syntastic/syntastic'          " Syntax checking
-Plug 'craigemery/vim-autotag'           " Re-run ctags on buffer write
+                                             " ## Basic utils
+Plug 'ctrlpvim/ctrlp.vim'                    " Fuzzy finder
+Plug 'gabesoft/vim-ags'                      " Search the codebase
+Plug 'tpope/vim-fugitive'                    " Git wrapper
+Plug 'airblade/vim-gitgutter'                " Git diff line by line
+Plug 'godlygeek/tabular'                     " Text alignment tool
+Plug 'junegunn/vim-easy-align'               " Easy alignment tool
+Plug 'vim-syntastic/syntastic'               " Syntax checking
+Plug 'craigemery/vim-autotag'                " Re-run ctags on buffer write
+Plug 'tpope/vim-surround'                    " Easy surroundings manipulation
+Plug 'tpope/vim-repeat'                      " repeat any command
 
-                                        "## Tests
-Plug 'janko-m/vim-test'                 " Run your tests without leaving vim
-Plug 'benmills/vimux'                   " Display strategy for vim-test
-Plug 'tpope/vim-dispatch'               " Display strategy for vim-test
+                                             " ## Tests
+Plug 'janko-m/vim-test'                      " Run your tests without leaving vim
+Plug 'benmills/vimux'                        " Display strategy for vim-test
+Plug 'tpope/vim-dispatch'                    " Display strategy for vim-test
 
-                                        "## Frame
-Plug 'itchyny/lightline.vim'            " Vim status line
-Plug 'edkolev/tmuxline.vim'             " Tmux integration with vim colors
-Plug 'nathanaelkane/vim-indent-guides'  " display indentation guides
+                                             " ## Frame
+Plug 'itchyny/lightline.vim'                 " Vim status line
+Plug 'edkolev/tmuxline.vim'                  " Tmux integration with vim colors
+Plug 'nathanaelkane/vim-indent-guides'       " display indentation guides
 
-                                        "## Prose writing
-Plug 'junegunn/goyo.vim'                " Distraction free writing
-Plug 'junegunn/limelight.vim'           " Huperfocus writing in vim
+                                             " ## Prose writing
+Plug 'junegunn/goyo.vim'                     " Distraction free writing
+Plug 'junegunn/limelight.vim'                " Huperfocus writing in vim
 
-                                        "## Language syntax support
+                                             " ## Language syntax support
 Plug 'editorconfig/editorconfig-vim'
-Plug 'lumiliet/vim-twig'                " Twig support
-Plug 'slim-template/vim-slim'           " Slim templates support
-Plug 'urbit/hoon.vim'                   " Hoon syntax support
-Plug 'slim-template/vim-slim'           " slim templating syntax
-Plug 'kchmck/vim-coffee-script'         " coffeescript support
+Plug 'lumiliet/vim-twig'                     " Twig support
+Plug 'slim-template/vim-slim'                " Slim templates support
+Plug 'urbit/hoon.vim'                        " Hoon syntax support
+Plug 'slim-template/vim-slim'                " slim templating syntax
+Plug 'kchmck/vim-coffee-script'              " coffeescript support
+Plug 'elmcast/elm-vim'                       " Elm support
 
-                                        "## Clojure toolchain
-Plug 'junegunn/rainbow_parentheses.vim' " colorfull parenthesis in clojure
-Plug 'tpope/vim-fireplace'              " Clojure REPL support
+                                                   " ## Clojure toolchain
+Plug 'junegunn/rainbow_parentheses.vim'            " colorfull parenthesis in clojure
+Plug 'tpope/vim-fireplace'                         " Clojure REPL support
+Plug 'guns/vim-sexp'                               " S-expressions manipulation
+Plug 'tpope/vim-sexp-mappings-for-regular-people'  " Sexp bindings for terminal use
+
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -59,17 +66,9 @@ set updatetime=300
 
 
 " Color scheme
-"
-" Seoul
-"colo seoul256
-"set background=dark
-"
-"colo seoul256-light
-"set background=light
-"
 " Base16
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-bespin
+colorscheme base16-atelier-dune-light
 
 
 "vim indent guides config
@@ -225,7 +224,6 @@ nmap <silent> tg :TestVisit<CR>   " t g
 nmap <silent> ta :RSpec spec/acceptance --format RspecApiDocumentation::ApiFormatter<CR> " t a
 
 
-
 " Config RainbowParentheses
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
@@ -239,3 +237,20 @@ augroup rainbow_lisp
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
 
+" Let ctrlp ignore some common folders
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v(node_modules|target|out)$'}
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+" a few extra mappings for fireplace
+" evaluate top level form
+au BufEnter *.clj* nnoremap <buffer> cpt :Eval<CR>
+" evaluate the whole buffer (file)
+au BufEnter *.clj* nnoremap <buffer> cpf :%Eval<CR>
+" show last evaluation in temp file
+au BufEnter *.clj* nnoremap <buffer> cpl :Last<CR>
