@@ -50,7 +50,7 @@ set PATH $GOPATH/bin $GOROOT/bin $PATH
 set PATH $PATH $ANDROID_HOME/tools
 set PATH $PATH $ANDROID_HOME/tools/bin
 set PATH $PATH $ANDROID_HOME/platform-tools
-set PATH $PATH /opt/gradle/gradle-4.9/bin
+set PATH $PATH /opt/gradle/gradle-6.0.1/bin
 
 rbenv rehash >/dev/null ^&1
 

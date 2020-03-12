@@ -8,7 +8,7 @@ Plug 'chriskempson/base16-vim'
 
                                              " ## Basic utils
 Plug 'ctrlpvim/ctrlp.vim'                    " Fuzzy finder
-Plug 'gabesoft/vim-ags'                      " Search the codebase
+Plug 'wincent/ferret'                        " Search
 Plug 'tpope/vim-fugitive'                    " Git wrapper
 Plug 'airblade/vim-gitgutter'                " Git diff line by line
 Plug 'godlygeek/tabular'                     " Text alignment tool
