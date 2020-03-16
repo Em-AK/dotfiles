@@ -29,6 +29,7 @@ Plug 'airblade/vim-gitgutter'                      " Git diff line by line
 Plug 'itchyny/lightline.vim'                       " Simple statusline/tabline
 Plug 'itchyny/vim-gitbranch'                       " Function to get git branch
 Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
+Plug 'dense-analysis/ale'                          " Interface for clj-kondo
 call plug#end() " Initialize plugin system
 
 set nocompatible
@@ -94,3 +95,6 @@ let g:clap_theme = 'material_design_dark'
 nnoremap <C-P> :Clap files<CR>
 " grep all files for the word under the cusor
 nnoremap <C-F> :Clap grep ++query=<cword><CR>
+
+" Activate clj-kondo linter
+let g:ale_linters = {'clojure': ['clj-kondo']}
