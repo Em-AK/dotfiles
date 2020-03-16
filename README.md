@@ -1,7 +1,19 @@
-This is a collection of my configuration files.
-It works for me. There is a lot of room for improvemement.
+## Requirements
+* base system: Manjaro with i3
+* fish package
 
-Use them at your own risk!
+## Setup
 
-Feedback and comments welcome :)
+Set default shell to fish:
 
+```sh
+chsh -s /usr/bin/fish
+```
+
+Clone this repo
+
+```sh
+git clone https://github.com/Em-AK/dotfiles.git
+```
+
+Run init.fish script
