@@ -28,6 +28,7 @@ Plug 'tpope/vim-repeat'                            " repeat any command
 Plug 'airblade/vim-gitgutter'                      " Git diff line by line
 Plug 'itchyny/lightline.vim'                       " Simple statusline/tabline
 Plug 'itchyny/vim-gitbranch'                       " Function to get git branch
+Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
 call plug#end() " Initialize plugin system
 
 set nocompatible
@@ -86,3 +87,10 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+
+" Set readable clap theme
+let g:clap_theme = 'material_design_dark'
+" emulate Ctrl-P behavior with Clap
+nnoremap <C-P> :Clap files<CR>
+" grep all files for the word under the cusor
+nnoremap <C-F> :Clap grep ++query=<cword><CR>
