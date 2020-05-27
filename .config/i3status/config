@@ -31,8 +31,8 @@ cpu_usage {
 }
 
 cpu_temperature 0 {
-	format = " %degrees °C "
-	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
+  format = " %degrees °C "
+  path = "/sys/bus/acpi/devices/LNXTHERM:00/thermal_zone/temp"
 }
 
 load {
@@ -76,7 +76,7 @@ battery all {
 }
 
 memory {
-        format = " ram %free "
+        format = " ram %available "
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
